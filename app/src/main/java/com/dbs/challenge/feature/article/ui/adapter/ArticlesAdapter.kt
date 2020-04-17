@@ -1,6 +1,7 @@
 package com.dbs.challenge.feature.article.ui.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -16,15 +17,17 @@ import com.dbs.challenge.feature.article.domain.model.ArticleEntity
 import com.dbs.challenge.feature.article.ui.adapter.ArticlesAdapter.ArticlesViewHolder
 
 
-class ArticlesAdapter :
+class ArticlesAdapter(private val callBack: (ArticleEntity, View) -> Unit) :
     ListAdapter<ArticleEntity, ArticlesViewHolder>(ArticleDiffCallback()) {
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticlesViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemBinding: ItemArticleBinding =
             ItemArticleBinding.inflate(layoutInflater, parent, false)
-
+        itemBinding.item.setOnClickListener {
+            val articleEntity: ArticleEntity? = itemBinding.article
+            articleEntity?.let { it1 -> callBack.invoke(it1, it) }
+        }
         return ArticlesViewHolder(itemBinding)
     }
 
@@ -48,6 +51,7 @@ class ArticlesAdapter :
         override fun areContentsTheSame(oldItem: ArticleEntity, newItem: ArticleEntity): Boolean {
             return oldItem == newItem
         }
+
     }
 
     override fun onBindViewHolder(holder: ArticlesViewHolder, position: Int) {
@@ -55,6 +59,7 @@ class ArticlesAdapter :
         holder.bind(articleEntity)
     }
 }
+
 @BindingAdapter("articleImage")
 fun loadImage(view: ImageView, imageUrl: String?) {
     Glide.with(view.context)
