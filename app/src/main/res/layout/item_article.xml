@@ -5,7 +5,7 @@
     <data>
         <variable
             name="article"
-            type="com.dbs.challenge.feature.domain.model.ArticleEntity" />
+            type="com.dbs.challenge.feature.article.domain.model.ArticleEntity" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

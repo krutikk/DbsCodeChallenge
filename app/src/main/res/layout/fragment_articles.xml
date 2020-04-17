@@ -9,11 +9,11 @@
 
         <variable
             name="viewModel"
-            type="com.dbs.challenge.feature.presentation.viewmodel.ArticlesViewModel" />
+            type="com.dbs.challenge.feature.article.presentation.viewmodel.ArticlesViewModel" />
 
         <variable
             name="viewState"
-            type="com.dbs.challenge.feature.presentation.model.ArticleViewState" />
+            type="com.dbs.challenge.feature.article.presentation.model.ArticleViewState" />
 
     </data>
 

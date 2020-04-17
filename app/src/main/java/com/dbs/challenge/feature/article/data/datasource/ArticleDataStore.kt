@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.flow
 
 class ArticleDataStore(private val articleApi: IArticleApiClient) {
 
-    fun getArticleData(id:String): Flow<ArticleResponse> = flow {
-        emit(articleApi.getArticleDetail(id))
+    fun getArticleData(): Flow<List<ArticleResponse>> = flow {
+        emit(articleApi.getArticles())
     }
 
 
