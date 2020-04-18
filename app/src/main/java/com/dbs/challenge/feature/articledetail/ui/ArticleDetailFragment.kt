@@ -27,7 +27,7 @@ class ArticleDetailFragment : Fragment() {
         )
         binding.viewModel = viewModel
         arguments?.getString("id")?.let { id ->
-            (binding.viewModel as ArticleDetailViewModel).getViewState("1")
+            (binding.viewModel as ArticleDetailViewModel).getViewState(id)
                 ?.observeWith(this) {
                     with(binding) {
                         it.data?.avatar = arguments?.getString("avatar").toString()

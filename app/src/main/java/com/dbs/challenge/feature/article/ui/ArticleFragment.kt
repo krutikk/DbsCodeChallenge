@@ -52,7 +52,8 @@ class ArticleFragment : Fragment() {
     private fun navigateToDetail(view: View, entity: ArticleEntity) {
         val direction = ArticleFragmentDirections.actionArticleFragmentToArticledetailFragment()
         direction.id = entity.id.toString()
-        direction.title = entity.title.toString()
+        entity.title?.let { direction.title = it }
+        entity.avatar?.let { direction.avatar = it }
         Navigation.findNavController(view).navigate(direction)
     }
 
