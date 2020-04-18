@@ -13,6 +13,7 @@ import com.dbs.challenge.feature.article.domain.interactor.GetArticlesInteractor
 import com.dbs.challenge.feature.article.domain.repository.IArticleRepository
 import com.dbs.challenge.feature.article.presentation.viewmodel.ArticlesViewModel
 import com.dbs.challenge.feature.articledetail.data.datasource.ArticleDetailDataStore
+import com.dbs.challenge.feature.articledetail.data.datasource.ArticleDetailLocalDataStore
 import com.dbs.challenge.feature.articledetail.data.repository.IArticleDetailRepositoryImpl
 import com.dbs.challenge.feature.articledetail.domain.interactor.GetArticleDetailInteractor
 import com.dbs.challenge.feature.articledetail.domain.repository.IArticleDetailRepository
@@ -41,7 +42,7 @@ private val appModule = module {
 
     }
     single { get<ArticleDatabase>().articleDao() }
-
+    single { get<ArticleDatabase>().articleDetailDao() }
     single {
         qualifier("GetArticleDetailInteractor")
         GetArticleDetailInteractor(
@@ -55,7 +56,7 @@ private val appModule = module {
         IArticleRepositoryImpl(get(), get(), get())
     }
     single<IArticleDetailRepository> {
-        IArticleDetailRepositoryImpl(get())
+        IArticleDetailRepositoryImpl(get(), get(), get())
 
     }
     single {
@@ -64,8 +65,12 @@ private val appModule = module {
     }
 
     single {
-        qualifier("ArticleDataStore")
+        qualifier("ArticleDetailDataStore")
         ArticleDetailDataStore(get())
+    }
+    single {
+        qualifier("ArticleDetailLocalDataStore")
+        ArticleDetailLocalDataStore(get())
     }
     single {
         qualifier("ArticleLocalDataStore")
