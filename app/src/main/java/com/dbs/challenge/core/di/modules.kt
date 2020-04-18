@@ -1,9 +1,13 @@
 package com.dbs.challenge.core.di
 
 
+import androidx.room.Room
 import com.dbs.challenge.BuildConfig
 import com.dbs.challenge.core.api.IArticleApiClient
+import com.dbs.challenge.core.database.ArticleDatabase
+import com.dbs.challenge.core.utils.NetworkConnectivity
 import com.dbs.challenge.feature.article.data.datasource.ArticleDataStore
+import com.dbs.challenge.feature.article.data.datasource.ArticleLocalDataStore
 import com.dbs.challenge.feature.article.data.repository.IArticleRepositoryImpl
 import com.dbs.challenge.feature.article.domain.interactor.GetArticlesInteractor
 import com.dbs.challenge.feature.article.domain.repository.IArticleRepository
@@ -36,6 +40,8 @@ private val appModule = module {
         )
 
     }
+    single { get<ArticleDatabase>().articleDao() }
+
     single {
         qualifier("GetArticleDetailInteractor")
         GetArticleDetailInteractor(
@@ -43,8 +49,10 @@ private val appModule = module {
         )
 
     }
+    single { Room.databaseBuilder(get(), ArticleDatabase::class.java, "article-database").build() }
+
     single<IArticleRepository> {
-        IArticleRepositoryImpl(get())
+        IArticleRepositoryImpl(get(), get(), get())
     }
     single<IArticleDetailRepository> {
         IArticleDetailRepositoryImpl(get())
@@ -54,9 +62,18 @@ private val appModule = module {
         qualifier("ArticleDataStore")
         ArticleDataStore(get())
     }
+
     single {
         qualifier("ArticleDataStore")
         ArticleDetailDataStore(get())
+    }
+    single {
+        qualifier("ArticleLocalDataStore")
+        ArticleLocalDataStore(get())
+    }
+
+    single {
+        NetworkConnectivity(get())
     }
 }
 val networkModule = module {
@@ -83,5 +100,6 @@ fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
 
 fun provideArticleApi(retrofit: Retrofit): IArticleApiClient =
     retrofit.create(IArticleApiClient::class.java)
+
 
 val applicationModules = listOf(appModule, networkModule)

@@ -12,7 +12,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        buildConfigField('String', 'API_URL', '"https://task.free.beeceptor.com/"')
+        buildConfigField('String', 'API_URL', '"http://demo4360336.mockable.io/"')
     }
     buildTypes {
         release {
@@ -69,6 +69,11 @@ dependencies {
 
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.0-alpha05"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.0-alpha05"
+
+    implementation "androidx.room:room-runtime:2.2.5"
+    kapt "androidx.room:room-compiler:2.2.5"
+    implementation "androidx.room:room-ktx:2.2.5"
+
 
     // Testing
     testImplementation "org.koin:koin-test:2.1.5"
