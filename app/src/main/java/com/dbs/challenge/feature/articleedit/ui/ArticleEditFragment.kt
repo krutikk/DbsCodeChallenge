@@ -27,6 +27,9 @@ class ArticleEditFragment : Fragment() {
                 arguments?.getString("id") ?: ""
             )
         setHasOptionsMenu(true)
+        binding.btnSave.setOnClickListener {
+            view?.findNavController()?.navigateUp()
+        }
         return binding.root
     }
 
