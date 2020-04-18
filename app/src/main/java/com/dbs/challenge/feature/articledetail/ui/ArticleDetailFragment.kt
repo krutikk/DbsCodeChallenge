@@ -30,7 +30,9 @@ class ArticleDetailFragment : Fragment() {
             (binding.viewModel as ArticleDetailViewModel).getViewState("1")
                 ?.observeWith(this) {
                     with(binding) {
+                        it.data?.avatar = arguments?.getString("avatar").toString()
                         viewState = it
+
                     }
                 }
         }
@@ -60,7 +62,6 @@ class ArticleDetailFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.toolbar_menu, menu)
     }
-
 
 
 }

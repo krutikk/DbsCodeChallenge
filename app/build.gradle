@@ -12,7 +12,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        buildConfigField('String', 'API_URL', '"http://demo4360336.mockable.io"')
+        buildConfigField('String', 'API_URL', '"https://task.free.beeceptor.com/"')
     }
     buildTypes {
         release {

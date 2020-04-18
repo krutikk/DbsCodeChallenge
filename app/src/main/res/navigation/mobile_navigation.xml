@@ -28,6 +28,10 @@
             android:name="title"
             android:defaultValue=" "
             app:argType="string" />
+        <argument
+            android:name="avatar"
+            android:defaultValue=" "
+            app:argType="string" />
         <action
             android:id="@+id/action_articleDetailFragment_to_articleEditFragment"
             app:destination="@id/articleEditFragment"
