@@ -13,7 +13,6 @@
             android:id="@+id/action_articleFragment_to_articledetailFragment"
             app:destination="@id/articleDetailFragment"
             app:launchSingleTop="true"
-            app:popUpTo="@+id/articleFragment"
             app:popUpToInclusive="true" />
 
     </fragment>
@@ -27,6 +26,43 @@
             app:argType="string" />
         <argument
             android:name="title"
+            android:defaultValue=" "
+            app:argType="string" />
+        <action
+            android:id="@+id/action_articleDetailFragment_to_articleEditFragment"
+            app:destination="@id/articleEditFragment"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true" >
+        <argument
+            android:name="id"
+            android:defaultValue="0"
+            app:argType="string" />
+        <argument
+            android:name="title"
+            android:defaultValue=" "
+            app:argType="string" />
+            <argument
+                android:name="desc"
+                android:defaultValue=" "
+                app:argType="string" />
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/articleEditFragment"
+        android:name="com.dbs.challenge.feature.articleedit.ui.ArticleEditFragment"
+        android:label="Edit {title}">
+        <action
+            android:id="@+id/action_articleDetailFragment_to_articleEditFragment"
+            app:destination="@id/articleEditFragment"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="title"
+            android:defaultValue=" "
+            app:argType="string" />
+        <argument
+            android:name="desc"
             app:argType="string" />
     </fragment>
 

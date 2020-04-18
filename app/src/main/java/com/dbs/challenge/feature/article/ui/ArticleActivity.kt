@@ -3,6 +3,7 @@ package com.dbs.challenge.feature.article.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.dbs.challenge.R
@@ -20,4 +21,8 @@ class ArticleActivity : AppCompatActivity() {
         toolbar.setupWithNavController(navController, appBarConfiguration)
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        findNavController(container_fragment.id)?.navigateUp()
+    }
 }

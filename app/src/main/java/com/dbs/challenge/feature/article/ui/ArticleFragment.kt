@@ -2,7 +2,6 @@ package com.dbs.challenge.feature.article.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -16,7 +15,6 @@ import com.dbs.challenge.databinding.FragmentArticlesBinding
 import com.dbs.challenge.feature.article.domain.model.ArticleEntity
 import com.dbs.challenge.feature.article.presentation.viewmodel.ArticlesViewModel
 import com.dbs.challenge.feature.article.ui.adapter.ArticlesAdapter
-import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -52,10 +50,9 @@ class ArticleFragment : Fragment() {
     }
 
     private fun navigateToDetail(view: View, entity: ArticleEntity) {
-        val direction = ArticleFragmentDirections.actionArticleFragmentToArticledetailFragment(
-            entity.title ?: ""
-        )
+        val direction = ArticleFragmentDirections.actionArticleFragmentToArticledetailFragment()
         direction.id = entity.id.toString()
+        direction.title = entity.title.toString()
         Navigation.findNavController(view).navigate(direction)
     }
 
