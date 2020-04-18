@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-                android:text="@{article.date}"
+                android:text="@{article.getFormattedDate()}"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintHorizontal_bias="0.0"

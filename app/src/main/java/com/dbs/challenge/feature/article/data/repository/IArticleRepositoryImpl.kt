@@ -13,7 +13,8 @@ class IArticleRepositoryImpl(
     override fun getArticles(): Flow<List<ArticleEntity>> =
         articleDataStore.getArticleData()
             .map {
-                it.map { articleitem ->
+                resplist ->
+                resplist.sortedByDescending { it.lastUpdate }.map { articleitem ->
                     ArticleEntity(
                         articleitem.id,
                         articleitem.title,

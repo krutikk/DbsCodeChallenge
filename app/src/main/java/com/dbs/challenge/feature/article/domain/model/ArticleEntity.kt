@@ -7,9 +7,9 @@ data class ArticleEntity(
     val title: String?,
     val description: String?,
     val avatar: String?,
-    private val date: Long?
+     val date: Long?
 ) {
-    fun getDate(): String {
+    fun getFormattedDate(): String {
         return date?.getFormattedDate() ?: ""
     }
 }
